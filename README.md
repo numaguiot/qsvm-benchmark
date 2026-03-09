@@ -12,7 +12,7 @@ A comprehensive study on **Quantum Kernel Methods** for non-linear classificatio
 In classical Machine Learning, Support Vector Machines (SVMs) often use the "Kernel Trick" to separate non-linear data by projecting it into a higher-dimensional space. In Quantum Machine Learning (QML), we leverage the **Hilbert Space** of a quantum processor to perform this mapping naturally.
 
 **The Goal:**
-To classify the "Two Moons" dataset (non-linear) using a **Quantum Fidelity Kernel** and analyze how **Circuit Depth** (complexity) and **Data Noise** affect model performance.
+To classify the "Two Moons" dataset (non-linear) using a **Quantum Fidelity Kernel** and analyze how **Circuit Depth** (expressibility) and **Classical Data Noise** affect the model's capacity to generalize without overfitting.
 
 ## Theoretical Background
 
@@ -22,7 +22,7 @@ $$K(\vec{x}_i, \vec{x}_j) = |\langle \phi(\vec{x}_i) | \phi(\vec{x}_j) \rangle|^
 
 * **Feature Map:** I use the `ZZFeatureMap`, which introduces entanglement between qubits.
 * **Circuit Depth (`reps`):** Controls the number of repeated entanglement layers. Higher depth = higher expressibility but higher susceptibility to noise.
-
+* **Execution:** State overlap is computed using Qiskit primitives (e.g., `Fidelity` or `Sampler`) to evaluate the kernel matrix efficiently.
 ---
 
 ## The Benchmark Experiment
@@ -54,7 +54,7 @@ The following matrix visualizes the decision boundaries for each scenario:
 ## Key Takeaways
 
 1.  **Complexity is a Double-Edged Sword:** In Quantum ML, increasing circuit depth (`reps`) improves performance on clean data but leads to catastrophic overfitting on noisy data.
-2.  **Quantum Regularization:** Shallower circuits can sometimes outperform deeper ones in high-noise environments by forcing simpler decision boundaries.
+2.  **Quantum Regularization:** Shallower circuits can act as a natural regularizer against classical data noise. By restricting the quantum model's expressibility, it is forced to learn the general underlying distribution rather than memorizing noisy outliers.
 3.  **Data Quality:** The quality of the dataset (Signal-to-Noise ratio) is as critical as the algorithm itself.
 
 ## Installation & Usage
